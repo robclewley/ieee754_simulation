@@ -1,4 +1,4 @@
-# ieee754_simulation
+# Simfloat
 
 A Python module to simulate binary floating point representations and arithmetic to IEEE 754 standards of arbitrary fixed precision, or to infinite precision, and different rounding modes.
 You may find it is easier to learn about machine epsilon, denormalized numbers, representation and rounding error using low-bit formats compared to the standard single or double precision.
