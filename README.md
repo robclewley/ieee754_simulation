@@ -157,7 +157,7 @@ Binary("-0.1111E0")
 True
 >>> x.as_decimal()
 Decimal("-0.9375")
->>> print x
+>>> print(x)
 1 01110 111000000000
 ```
 
@@ -191,14 +191,14 @@ True
 ### Conversions
 
 For high precision floats with long mantissas, convert them accurately to
-Decimal type. Note that Decimal(str(f)) will not be accurate for floats f
-with mantissas longer than the displayable length of f by the str function.
-Thus float(Decimal(str(f))) != f for some f. To avoid this, create the
+Decimal type. Note that `Decimal(str(f))` will not be accurate for floats `f`
+with mantissas longer than the displayable length of `f` by the `str` function.
+Thus `float(Decimal(str(f))) != f` for some `f`. To avoid this, create the
 representation of the float in the appropriate context by
-double(f)
-which will be a precise representation of f in double precision, where f
-can be a python float, numpy.float64. For numpy.float32 use single(f).
-Binary values in one context can be converted (coerced) to another thus:
+`double(f)`
+which will be a precise representation of `f` in double precision, where `f`
+can be a python float, numpy.float64. For numpy.float32 use `single(f)`.
+Binary values in one context can be converted (coerced) to another by:
 
 ```
 >>> xs = Binary('-1111.001', single)
@@ -228,7 +228,7 @@ the rounding is the same.
 >>> bd = Binary(double(1.5))
 >>> bq = Binary(quadruple(0.1))
 >>> c = bd + bq
->>> print c
+>>> print(c)
 0.11001100110011001100110011001100110011001100110011001101E1
 >>> c.__class__
 <class 'binary.Binary'>
