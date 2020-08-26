@@ -42,9 +42,8 @@ See the following for details, and references therein:
 * decimal context precision value must not be changed by the user to be less
   than the precision required by any ContextClass instances (Binary numbers of a
   fixed precision), otherwise arithmetic on those numbers may be inaccurate.
-  In Python 2.5 and above, local context could be established for these
-  calculations using the with statement (see here for implementation details:
-  http://docs.python.org/lib/decimal-decimal.html). See binary_py25.py.
+  Local context could be established for these
+  calculations using the `with` statement (see [here for implementation details](https://docs.python.org/3/library/decimal.html)).
 * mod, floordiv, divmod methods are not supported.
 * Can be slow to evaluate expressions involving high precision values.
 * Can hash a binary context (ContextClass instance), but cannot hash
@@ -65,6 +64,10 @@ See the following for details, and references therein:
 ## Usage
 
 ### Constructors
+
+Here, the `define_context` factory function declares a context according to number of
+digits for the characteristic (5) and the significand (12), using the `ROUND_DOWN`
+rounding rule. (The default rule is `ROUND_HALF_UP` if not specified.)
 
 ```
 >>> context = define_context(5, 12, ROUND_DOWN)
@@ -103,11 +106,12 @@ then this is also equivalent:
 Otherwise, the resulting representation in a will be to the "nearest"
 representable value under the rules of the context's precision and rounding
 mode.
-The values in a are instances of the context, and are not Binary class
+The values in `a` are instances of the context, and are not Binary class
 instances.
 Note that a context instance cannot be initialized directly using a string
 literal for a binary fraction, to avoid ambiguity with the primary use
-case, namely with input strings for (sign, characteristic, significand).
+case: namely, with input strings for the (sign, characteristic, significand).
+
 The Binary constructor can also represent _arbitrary_ precision binary values in
 the absence of a given context. After any of the above definitions of `x`:
 
@@ -173,7 +177,7 @@ ValueError: Mismatched precision
 ```
 
 If you want to compare the actual values that these objects represent, convert
-them to a Binary number first
+them to a Binary number first.
 
 ```
 >>> bd = Binary(double(1))
@@ -235,3 +239,5 @@ the rounding is the same.
 >>> c.context   # coerced to the higher precision
 <class 'binary.Float_15_112_HU'>
 ```
+
+More examples can be seen in the included [`test_simfloat.py`](https://github.com/robclewley/ieee754_simulation/blob/master/simfloat/test_simfloat.py) module.
